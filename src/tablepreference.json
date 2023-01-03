@@ -1,0 +1,1499 @@
+{
+  "tablePreferences": {
+    "orderManagement": [
+      {
+        "name": "Order ID",
+        "id": "Order ID",
+        "correspondingValue": "orderId",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Customer",
+        "id": "Customer",
+        "correspondingValue": "customer",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Price",
+        "id": "Price",
+        "correspondingValue": "orderValue",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Order Date",
+        "id": "Order Date",
+        "correspondingValue": "orderDate",
+        "timeValue": true,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Status",
+        "id": "Status",
+        "correspondingValue": "orderStatus",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Carrier",
+        "id": "Carrier",
+        "correspondingValue": "carrier",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Tracking Number",
+        "id": "Tracking Number",
+        "correspondingValue": "trackingNumber",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Delivery Method",
+        "id": "Delivery_Method",
+        "correspondingValue": "deliveryMethod",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Tray",
+        "id": "Tray",
+        "correspondingValue": "tote",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Action",
+        "id": "Action",
+        "correspondingValue": "action",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      }
+    ],
+    "orderManagement.orderDetails": [
+      {
+        "name": "SKU",
+        "id": "sku_",
+        "correspondingValue": "sku",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Bin",
+        "id": "bin_",
+        "correspondingValue": "binLocation",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Name",
+        "id": "name_",
+        "correspondingValue": "productName",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Fn SKU",
+        "id": "fn_sku_",
+        "correspondingValue": "fnSku",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "ASIN",
+        "id": "asin_",
+        "correspondingValue": "asin",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Quantity",
+        "id": "quantity_",
+        "correspondingValue": "quantity",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Unit",
+        "id": "unit_",
+        "correspondingValue": "formFactor",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Serial Number",
+        "id": "serial_number_",
+        "correspondingValue": "serialNumber",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Status",
+        "id": "status_",
+        "correspondingValue": "status",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      }
+    ],
+    "outboundExceptions": [
+      {
+        "name": "Order ID",
+        "id": "Order ID",
+        "correspondingValue": "pickupTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Date",
+        "id": "Date",
+        "correspondingValue": "pickupTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "# items",
+        "id": "# items",
+        "correspondingValue": "pickupTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Completion",
+        "id": "Completion",
+        "correspondingValue": "pickupTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Action",
+        "id": "Action",
+        "correspondingValue": "pickupTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      }
+    ],
+    "outboundExceptions.orderDetails": [
+      {
+        "name": "SKU",
+        "id": "sku_",
+        "correspondingValue": "sku",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Bin",
+        "id": "bin_",
+        "correspondingValue": "binLocation",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Name",
+        "id": "name_",
+        "correspondingValue": "productName",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Fn SKU",
+        "id": "fn_sku_",
+        "correspondingValue": "fnSku",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "ASIN",
+        "id": "asin_",
+        "correspondingValue": "asin",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Quantity",
+        "id": "quantity_",
+        "correspondingValue": "quantity",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Unit",
+        "id": "unit_",
+        "correspondingValue": "formFactor",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Serial Number",
+        "id": "serial_number_",
+        "correspondingValue": "serialNumber",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Status",
+        "id": "status_",
+        "correspondingValue": "status",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      }
+    ],
+    "outbound.Picking": [
+      {
+        "name": "Batch ID",
+        "id": "batch_id_",
+        "correspondingValue": "id",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "User",
+        "id": "user_",
+        "correspondingValue": "name",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Assigned Time",
+        "id": "assigned_time_",
+        "correspondingValue": "assignedTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "First Pick",
+        "id": "first_pick_",
+        "correspondingValue": "firstCompletedTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Last Pick",
+        "id": "last_pick_",
+        "correspondingValue": "lastCompletedTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "# items",
+        "id": "#_items_",
+        "correspondingValue": "quantity",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Completion",
+        "id": "completion_",
+        "correspondingValue": "completion",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      }
+    ],
+    "outbound.Prepping": [
+      {
+        "name": "Batch ID",
+        "id": "batch_id_",
+        "correspondingValue": "id",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "User",
+        "id": "user_",
+        "correspondingValue": "name",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Assigned Time",
+        "id": "assigned_time_",
+        "correspondingValue": "assignedTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "First Prep",
+        "id": "first_prep_",
+        "correspondingValue": "firstCompletedTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Last Prep",
+        "id": "last_prep_",
+        "correspondingValue": "lastCompletedTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "# items",
+        "id": "#_items_",
+        "correspondingValue": "quantity",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Completion",
+        "id": "completion_",
+        "correspondingValue": "completion",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      }
+    ],
+    "outbound.Packing": [
+      {
+        "name": "Batch ID",
+        "id": "batch_id_",
+        "correspondingValue": "id",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "User",
+        "id": "user_",
+        "correspondingValue": "name",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Assigned Time",
+        "id": "assigned_time_",
+        "correspondingValue": "assignedTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "First Pack",
+        "id": "first_pack_",
+        "correspondingValue": "firstCompletedTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Last Pack",
+        "id": "last_pack_",
+        "correspondingValue": "lastCompletedTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "# items",
+        "id": "#_items_",
+        "correspondingValue": "quantity",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Completion",
+        "id": "completion_",
+        "correspondingValue": "completion",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      }
+    ],
+    "outbound.Exception": [
+      {
+        "name": "Batch ID",
+        "id": "batch_id_",
+        "correspondingValue": "id",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "User",
+        "id": "user_",
+        "correspondingValue": "name",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Assigned Time",
+        "id": "assigned_time_",
+        "correspondingValue": "assignedTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "First Putaway",
+        "id": "first_putaway_",
+        "correspondingValue": "firstCompletedTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Last Putaway",
+        "id": "last_putaway_",
+        "correspondingValue": "lastCompletedTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "# items",
+        "id": "#_items_",
+        "correspondingValue": "quantity",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Completion",
+        "id": "completion_",
+        "correspondingValue": "completion",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Status",
+        "id": "status_",
+        "correspondingValue": "status",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      }
+    ],
+    "consignments": [
+      {
+        "name": "Action",
+        "id": "action_",
+        "correspondingValue": "action",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Order ID",
+        "id": "order_id_",
+        "correspondingValue": "orderId",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Supplier",
+        "id": "supplier_",
+        "correspondingValue": "supplier",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Tracking #",
+        "id": "tracking_#_",
+        "correspondingValue": "trackingNumber",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "No. of products",
+        "id": "no._of_products_",
+        "correspondingValue": "items",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Individual items",
+        "id": "individual_items_",
+        "correspondingValue": "quantity",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "To be Received",
+        "id": "to_be_received_",
+        "correspondingValue": "availableQuantity",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Consignment Date",
+        "id": "consignment_date_",
+        "correspondingValue": "consignmentDate",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Added Date",
+        "id": "added_date_",
+        "correspondingValue": "createdAt",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Status",
+        "id": "status_",
+        "correspondingValue": "status",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Tenant",
+        "id": "tenant_",
+        "correspondingValue": "name",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      }
+    ],
+    "inbound.Receiving": [
+      {
+        "name": "Batch ID",
+        "id": "batch_id_",
+        "correspondingValue": "id",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "User",
+        "id": "user_",
+        "correspondingValue": "name",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Assigned Time",
+        "id": "assigned_time_",
+        "correspondingValue": "assignedTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "First Received",
+        "id": "first_received_",
+        "correspondingValue": "firstCompletedTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Last Received",
+        "id": "last_received_",
+        "correspondingValue": "lastCompletedTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "# items",
+        "id": "#_items_",
+        "correspondingValue": "quantity",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Completion",
+        "id": "completion_",
+        "correspondingValue": "completion",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Status",
+        "id": "status_",
+        "correspondingValue": "status",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      }
+    ],
+    "inbound.Putaway": [
+      {
+        "name": "Batch ID",
+        "id": "batch_id_",
+        "correspondingValue": "id",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "User",
+        "id": "user_",
+        "correspondingValue": "name",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Assigned Time",
+        "id": "assigned_time_",
+        "correspondingValue": "assignedTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "First Putaway",
+        "id": "first_putaway_",
+        "correspondingValue": "firstCompletedTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Last Putaway",
+        "id": "last_putaway_",
+        "correspondingValue": "lastCompletedTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "# items",
+        "id": "#_items_",
+        "correspondingValue": "quantity",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Completion",
+        "id": "completion_",
+        "correspondingValue": "completion",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Status",
+        "id": "status_",
+        "correspondingValue": "status",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      }
+    ],
+    "inbound.Exception": [
+      {
+        "name": "Batch ID",
+        "id": "batch_id_",
+        "correspondingValue": "id",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "User",
+        "id": "user_",
+        "correspondingValue": "name",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Assigned Time",
+        "id": "assigned_time_",
+        "correspondingValue": "assignedTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "First Putaway",
+        "id": "first_putaway_",
+        "correspondingValue": "firstCompletedTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Last Putaway",
+        "id": "last_putaway_",
+        "correspondingValue": "lastCompletedTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "# items",
+        "id": "#_items_",
+        "correspondingValue": "quantity",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Completion",
+        "id": "completion_",
+        "correspondingValue": "completion",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Status",
+        "id": "status_",
+        "correspondingValue": "status",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      }
+    ],
+    "inboundExceptions": [
+      {
+        "name": "Order ID",
+        "id": "Order ID",
+        "correspondingValue": "pickupTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Date",
+        "id": "Date",
+        "correspondingValue": "pickupTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "# items",
+        "id": "# items",
+        "correspondingValue": "pickupTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Completion",
+        "id": "Completion",
+        "correspondingValue": "pickupTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Action",
+        "id": "Action",
+        "correspondingValue": "pickupTime",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      }
+    ],
+    "inventoryMeasureMent": [
+      {
+        "name": "SKU",
+        "id": "sku_",
+        "correspondingValue": "sku",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Name",
+        "id": "name_",
+        "correspondingValue": "name",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Last Received / Qty",
+        "id": "last_received_/_qty_",
+        "correspondingValue": "receivedQty",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Last Putaway / Qty",
+        "id": "last_putaway_/_qty_",
+        "correspondingValue": "putawayQty",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Last Fulfilled / Qty",
+        "id": "last_fulfilled_/_qty_",
+        "correspondingValue": "fullfilledQty",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Allocated",
+        "id": "allocated_",
+        "correspondingValue": "blockedStock",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "In Stock",
+        "id": "in_stock_",
+        "correspondingValue": "totalStock",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Tenant",
+        "id": "tenant_",
+        "correspondingValue": "tenant",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Action",
+        "id": "action_",
+        "correspondingValue": "action",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      }
+    ],
+    "outboundExceptions.orderDetails": [
+      {
+        "name": "SKU",
+        "id": "sku_",
+        "correspondingValue": "sku",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Bin",
+        "id": "bin_",
+        "correspondingValue": "binLocation",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Name",
+        "id": "name_",
+        "correspondingValue": "productName",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Fn SKU",
+        "id": "fn_sku_",
+        "correspondingValue": "fnSku",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "ASIN",
+        "id": "asin_",
+        "correspondingValue": "asin",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Quantity",
+        "id": "quantity_",
+        "correspondingValue": "quantity",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Unit",
+        "id": "unit_",
+        "correspondingValue": "formFactor",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Serial Number",
+        "id": "serial_number_",
+        "correspondingValue": "serialNumber",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Status",
+        "id": "status_",
+        "correspondingValue": "status",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      }
+    ],
+    "picking.orderDetails": [
+      {
+        "name": "SKU",
+        "id": "sku_",
+        "correspondingValue": "sku",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Bin Location",
+        "id": "bin_location_",
+        "correspondingValue": "binLocation",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Name",
+        "id": "name_",
+        "correspondingValue": "name",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Quantity",
+        "id": "quantity_",
+        "correspondingValue": "quantity",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Status",
+        "id": "status_",
+        "correspondingValue": "status",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      }
+    ],
+    "prepping.orderDetails": [
+      {
+        "name": "SKU",
+        "id": "sku_",
+        "correspondingValue": "sku",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Bin Location",
+        "id": "bin_location_",
+        "correspondingValue": "binLocation",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Name",
+        "id": "name_",
+        "correspondingValue": "name",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Quantity",
+        "id": "quantity_",
+        "correspondingValue": "quantity",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Status",
+        "id": "status_",
+        "correspondingValue": "status",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      }
+    ],
+    "packing.orderDetails": [
+      {
+        "name": "SKU",
+        "id": "sku_",
+        "correspondingValue": "sku",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Bin Location",
+        "id": "bin_location_",
+        "correspondingValue": "binLocation",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Name",
+        "id": "name_",
+        "correspondingValue": "name",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Quantity",
+        "id": "quantity_",
+        "correspondingValue": "quantity",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Status",
+        "id": "status_",
+        "correspondingValue": "status",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      }
+    ],
+    "receiving.orderDetails": [
+      {
+        "name": "SKU",
+        "id": "sku_",
+        "correspondingValue": "sku",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Bin Location",
+        "id": "bin_location_",
+        "correspondingValue": "binLocation",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Name",
+        "id": "name_",
+        "correspondingValue": "name",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Quantity",
+        "id": "quantity_",
+        "correspondingValue": "quantity",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Status",
+        "id": "status_",
+        "correspondingValue": "status",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      }
+    ],
+    "putaway.orderDetails": [
+      {
+        "name": "SKU",
+        "id": "sku_",
+        "correspondingValue": "sku",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Bin Location",
+        "id": "bin_location_",
+        "correspondingValue": "binLocation",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Name",
+        "id": "name_",
+        "correspondingValue": "name",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Quantity",
+        "id": "quantity_",
+        "correspondingValue": "quantity",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Status",
+        "id": "status_",
+        "correspondingValue": "status",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      }
+    ],
+    "inbound.exceptions.orderDetails": [
+      {
+        "name": "SKU",
+        "id": "sku_",
+        "correspondingValue": "sku",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Bin Location",
+        "id": "bin_location_",
+        "correspondingValue": "binLocation",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Name",
+        "id": "name_",
+        "correspondingValue": "name",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Quantity",
+        "id": "quantity_",
+        "correspondingValue": "quantity",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Status",
+        "id": "status_",
+        "correspondingValue": "status",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      }
+    ],
+    "outbound.exceptions.orderDetails": [
+      {
+        "name": "SKU",
+        "id": "sku_",
+        "correspondingValue": "sku",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Bin Location",
+        "id": "bin_location_",
+        "correspondingValue": "binLocation",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Name",
+        "id": "name_",
+        "correspondingValue": "name",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Quantity",
+        "id": "quantity_",
+        "correspondingValue": "quantity",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Status",
+        "id": "status_",
+        "correspondingValue": "status",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      }
+    ],
+    "consingments.items": [
+      {
+        "name": "SKU",
+        "id": "sku_",
+        "correspondingValue": "",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Name",
+        "id": "name_",
+        "correspondingValue": "",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Quantity",
+        "id": "quantity_",
+        "correspondingValue": "",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "To be received",
+        "id": "to_be_received_",
+        "correspondingValue": "",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Form Factor",
+        "id": "form_factor_",
+        "correspondingValue": "",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      },
+      {
+        "name": "Notes",
+        "id": "notes_",
+        "correspondingValue": "",
+        "timeValue": false,
+        "arrayValue": false,
+        "enabled": true,
+        "editable": true
+      }
+    ]
+  }
+}
