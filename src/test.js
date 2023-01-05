@@ -6,14 +6,14 @@ const testJSON = [
     attributes: {
       optional: true,
     },
-    next: "2",
+    next: ["2"],
   },
   {
     id: "2",
     type: "batch-trigger",
     stage: "scan-consignment",
     target: ["consignment.trackingNumber"],
-    next: "3",
+    next: ["3"],
   },
   {
     id: "3",
@@ -28,10 +28,16 @@ const testJSON = [
         attributes: {
           manualEntry: true,
         },
-        next: "2",
+        next: ["2"],
       },
     ],
-    next: "4",
+    next: ["4", "482"],
+  },
+  {
+    id: "482",
+    next: [],
+    type: "batch-triggers",
+    stage: "get-picking-batch",
   },
 ];
 export default testJSON;

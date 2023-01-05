@@ -1,31 +1,17 @@
 import React from "react";
-import { Handle, Position } from "reactflow";
+import { Handle, NodeToolbar, Position } from "reactflow";
 
-function DataNode({ data, removeNode }) {
-  function updateSelection(val) {
-    data["action"] = val;
-  }
-
-  //   function getNodeData() {
-  //     const divs = [];
-  //     Object.entries(data).map(([k, v]) => {
-  //       divs.push(<div>{`${k}_${v}`}</div>);
-  //     });
-  //     return divs;
-  //   }
+function DataNode({ data }) {
 
   return (
     <>
+      <NodeToolbar className="px-2 rounded-lg py-1 bg-gray-500 gap-2 divide-red-400" isVisible={data.toolbarVisible} position={Position.Top}>
+        <button>delete</button>
+        <div className="h-full w-1 bg-white"></div>
+        <button>edit</button>
+      </NodeToolbar>
       <Handle type="target" position={Position.Top} />
-      <div className="p-2 m-1 text-[8pc] flex flex-col bg-white rounded-sm border border-black">
-        <div className="flex justify-between">
-          <div
-            onClick={() => removeNode(data.id)}
-            className="h-4 w-4 flex items-center justify-center">
-            X
-          </div>
-          <div className="h-4 w-4 flex items-center justify-center">E</div>
-        </div>
+      <div className="p-2 m-1 text-xs flex flex-col bg-white rounded-sm border border-black">
         <div>Type: {data.type}</div>
         <div>Stage: {data.stage}</div>
         <div>Target: {data.target}</div>

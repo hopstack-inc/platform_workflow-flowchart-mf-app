@@ -1,35 +1,58 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "./Button";
-import ToggleComponent from "./ToggleComponent";
 
-const NewNode = ({ addNode, setShowModal }) => {
+const NewNode = ({ addNode, data = null, setShowModal }) => {
   const selections = {
     types: ["initializer", "batch-triggers", "batch-process"],
-    initializer: ["select customer"],
-    "batch-triggers": ["scan-consignment", "get-picking-batch"],
-    "batch-process": ["process-loop", "identify-item"],
+    initializer: ["", "select customer"],
+    "batch-triggers": ["", "scan-consignment", "get-picking-batch"],
+    "batch-process": ["", "process-loop", "identify-item"],
   };
 
   const targets = {
-    "scan-consignment": ["consignment.trackingNumber", "consignment.id"],
-    "batch-process": ["consignments.products"],
-    "identify-item": ["upc", "ean", "sku"],
+    "scan-consignment": ["", "consignment.trackingNumber", "consignment.id"],
+    "batch-process": ["", "consignments.products"],
+    "identify-item": ["", "upc", "ean", "sku"],
   };
 
-  const allowedTypes = { "identify-item": ["scan", "pick-item", "hybrid"] };
-  const attributes = [
-    { attribute: "optional", value: false },
-    { attribute: " manualEntry", value: false },
+  const allowedTypes = { "identify-item": ["", "scan", "pick-item", "hybrid"] };
+  const attributeTypes = [
+    { attribute: "optional", value: true },
+    { attribute: "manualEntry", value: false },
   ];
 
-  const [type, setType] = useState(null);
-  const [stage, setStage] = useState(null);
-  const [target, setTarget] = useState(null);
-  const [allowedType, setAllowedType] = useState(null);
-  //   const [attributes, setAttributes] = useState(mapToList(data.attributes));
+  const [type, setType] = useState(
+    !data?.type ? selections.types[0] : data.type,
+  );
+  const [stage, setStage] = useState(!data?.stage ? null : data.stage);
+  const [target, setTarget] = useState(!data?.target ? null : data.target);
+  const [allowedType, setAllowedType] = useState(
+    !data?.allowedType ? null : data.allowedType,
+  );
+  const [attributes, setAttributes] = useState(attributeTypes);
+
+  function updateAttribute(attribute) {
+    let newState = [
+      ...attributes.map((attr) =>
+        attr.attribute == attribute.attribute
+          ? { attribute: attr.attribute, value: !attr.value }
+          : attr,
+      ),
+    ];
+    setAttributes([...newState]);
+  }
+
+  function getAttributes() {
+    let att = {};
+    attributes.forEach((attr) => {
+      att[attr["attribute"]] = attr.value;
+    });
+    return att;
+  }
 
   return (
     <div className="p-4 flex flex-col gap-3 bg-white rounded-sm border border-black">
+      Add New Node
       <label className="flex text-sm">
         Type?
         <select onChange={(e) => setType(e.target.value)}>
@@ -64,11 +87,11 @@ const NewNode = ({ addNode, setShowModal }) => {
           </select>
         </label>
       )}
-      {(targets[type] || targets[stage]) && (
+      {(targets[stage] || targets[type] ) && (
         <label className="flex text-sm">
           Target?
           <select onChange={(e) => setTarget(e.target.value)}>
-            {(targets[type] || targets[stage]).map((target) => (
+            {(targets[stage] || targets[type] ).map((target) => (
               <option key={target} value={target}>
                 {target}
               </option>
@@ -79,24 +102,28 @@ const NewNode = ({ addNode, setShowModal }) => {
       {stage &&
         attributes.map((attribute) => {
           return (
-            <label key={attribute.attribute} className="flex text-sm">
+            <label key={attribute.attribute} className="flex gap-2 text-sm">
+              <input
+                type={"checkbox"}
+                checked={attribute.value}
+                onChange={(e) => updateAttribute(attribute)}
+              />
               {attribute.attribute}?
-              <div className="h-10">
-                <ToggleComponent
-                  key={attribute.attribute}
-                  enabled={attribute.value}
-                  setEnabled={() => (attribute.value = !attribute.value)}
-                />
-              </div>
             </label>
           );
         })}
-      {type && stage && (
+      {type && (
         <Button
           title={"Add Node"}
           onClick={() => {
-            addNode({ type: type, stage: stage, target, allowedType });
             setShowModal(false);
+            addNode({
+              type,
+              stage,
+              target,
+              allowedType,
+              attributes: getAttributes(),
+            });
           }}
         />
       )}
