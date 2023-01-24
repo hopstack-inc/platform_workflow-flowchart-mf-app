@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import ReactFlow, {
   addEdge,
   applyEdgeChanges,
@@ -7,24 +7,21 @@ import ReactFlow, {
   Controls,
 } from "reactflow";
 import "reactflow/dist/style.css";
-import TextUpdaterNode from "./TextUpdater";
-import ButtonEdge from "./ButtonEdge";
+import ButtonEdge from "./EdgeTypes/ButtonEdge";
 import { updateEdge } from "reactflow/dist/esm";
-import ActionsNode from "./Actions";
-import DataNode from "./dataNode";
+import DataNode from "./NodeTypes/DataNode";
 import { SmartBezierEdge } from "@tisoap/react-flow-smart-edge";
-import Modal from "./Modal";
-import NewNode from "./NewNode";
-import { Button } from "./Button";
+import Modal from "./utils/Modal";
+import NewNode from "./NodeTypes/NewNode";
+import { Button } from "./utils/Button";
 import axios from "axios";
+import { WorkflowContext } from "./context/WorkflowContext";
 
 const rfStyle = {
   backgroundColor: "#B8CEFF",
 };
 
 const nodeTypes = {
-  textUpdater: TextUpdaterNode,
-  action: ActionsNode,
   data: DataNode,
 };
 const edgeTypes = {
@@ -33,84 +30,16 @@ const edgeTypes = {
 };
 
 const WorkflowChart = () => {
-  const [nodes, setNodes] = useState([]);
-  const [edges, setEdges] = useState([]);
-  const [lastPos, setLastPos] = useState(0);
-  const [showModal, setShowModal] = useState(false);
-
-  useEffect(() => {
-    let workflows;
-    axios.get("http://localhost:5045/api/workflows").then((res) => {
-      console.log(res.data.at(-1).workflow);
-      workflows = res.data.at(-1).workflow;
-      const convertedNodes = [];
-      const convertedEdges = [];
-      workflows?.forEach((node, index) => {
-        convertedNodes.push(...getNodeFrom(node, index));
-      });
-      convertedNodes.forEach((node) =>
-        convertedEdges.push(...getEdgeFrom(node)),
-      );
-      setLastPos(convertedNodes.length * 100 + 200);
-      setNodes([...convertedNodes]);
-      setEdges([...convertedEdges]);
-    });
-  }, []);
-
-  function getNodeFrom(node, index, isSub = false) {
-    const nodeList = [];
-    if (node["sub-workflow"] != null) {
-      node["sub-workflow"].forEach((element) =>
-        nodeList.push(...getNodeFrom(element, index + 1, true)),
-      );
-    }
-    nodeList.push({
-      id: `${node.id}`,
-      position: { x: isSub ? 250 : 100, y: index * 150 + 300 },
-      data: node,
-      type: "data",
-    });
-    return nodeList;
-  }
-
-  function getEdgeFrom(node) {
-    if (node.data.next) {
-      const list = [];
-      for (const id of node.data.next) {
-        list.push({
-          id: `${node.id}-${id}`,
-          source: node.id,
-          target: id,
-          type: "smartEdge",
-        });
-      }
-      return list;
-    }
-  }
-
-  function getLastPos() {
-    setLastPos(lastPos + 200);
-    return lastPos + 200;
-  }
-
-  function addNode(data) {
-    let node = {
-      id: `${nodes.length + (Math.random() * 100).toFixed(0)}`,
-      position: { x: 100, y: getLastPos() },
-      data: data,
-      type: "data",
-    };
-    let nodeList = [...nodes, node];
-    setNodes(nodeList);
-    setEdges([
-      ...edges,
-      {
-        id: `${nodes.at(-1).id}-${node.id}`,
-        source: nodes.at(-1).id.toString(),
-        target: node.id.toString(),
-      },
-    ]);
-  }
+  const {
+    nodes,
+    edges,
+    clearWorkflow,
+    showModal,
+    setShowModal,
+    setNodes,
+    setEdges,
+  } = useContext(WorkflowContext);
+  
   function getJson() {
     let flow = [];
     nodes.forEach((node) => {
@@ -131,21 +60,15 @@ const WorkflowChart = () => {
     });
 
     if (flow.length > 0)
-      axios
-        .post("http://localhost:5045/api/workflows", {
-          workflow: flow,
-          activity: "Receiving",
-        })
-        .then((e) => alert("Added new workflow"));
-    else 
-    alert("Add at least one node")
+      // axios
+      //   .post("http://localhost:5045/api/workflows", {
+      //     workflow: flow,
+      //     activity: "Receiving",
+      //   })
+      //   .then((e) => alert("Added new workflow"));
+      alert("Added new workflow");
+    else alert("Add at least one node");
     console.log(JSON.stringify(flow), "JSON");
-  }
-
-  function clearWorkflow() {
-    setNodes([]);
-    setEdges([]);
-    setLastPos(0);
   }
 
   const onEdgeUpdate = useCallback(
@@ -181,8 +104,10 @@ const WorkflowChart = () => {
     <div className="h-full w-full relative">
       <div className="absolute flex flex-col px-2 py-10 w-40 h-full shadow-lg bg-white z-10 left-0 top-0">
         <Button onClick={clearWorkflow} title={"New WF"} />
-        <Modal showModal={showModal} setShowModal={setShowModal}>
-          <NewNode addNode={addNode} setShowModal={setShowModal} />
+        <Modal
+          showModal={showModal}
+          setShowModal={setShowModal}>
+          <NewNode/>
         </Modal>
         <Button onClick={getJson} title={"JSON"} />
       </div>
