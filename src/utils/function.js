@@ -14,3 +14,14 @@ export const listToMap = (list) => {
   });
   return map;
 };
+
+export const getObjectList = (list) => {
+  const expList = []
+  list.forEach((item) => {
+    const words = item.split("-");
+    let name = ""
+    words.forEach((word) => name+=word)
+    expList.push({name:name, id:item})
+  })
+  return expList;
+}

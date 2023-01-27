@@ -1,8 +1,12 @@
+import Multiselect from "multiselect-react-dropdown";
 import React, { useContext, useState } from "react";
+import ConditionalTrigger from "../components/ConditionalTrigger";
 import DropDown from "../components/DropDown";
 import { WorkflowContext } from "../context/WorkflowContext";
 import { Button } from "../utils/Button";
+import { getObjectList } from "../utils/function";
 import {
+  ancillaryTypes,
   attributeTypes,
   nodeType,
   sysActions,
@@ -23,6 +27,9 @@ const NewNode = () => {
   const [type, setType] = useState(
     !selectedNode?.type ? nodeType.types[0] : selectedNode.type,
   );
+  const [ancillaryType, setAncillaryType] = useState(
+    !selectedNode?.ancillaryType ? "" : selectedNode.ancillaryType,
+  );
   const [sysProvidedActionType, setSysProvidedActionType] = useState(
     !selectedNode?.sysProvidedActionType
       ? ""
@@ -30,7 +37,7 @@ const NewNode = () => {
   );
   const [subSysProvidedActionType, setSubSysProvidedActionType] = useState(
     !selectedNode?.subSysProvidedActionType
-      ? ""
+      ? []
       : selectedNode.subSysProvidedActionType,
   );
 
@@ -51,6 +58,15 @@ const NewNode = () => {
 
   const [loop, setLoop] = useState();
   const [connectAfter, setConnectAfter] = useState();
+
+  function onSelect(selectedList, selectedItem) {
+    setSubSysProvidedActionType(selectedList);
+  }
+  function onRemove(selectedList, selectedItem) {
+    setSubSysProvidedActionType([
+      ...selectedList.filter((item) => item !== selectedItem),
+    ]);
+  }
 
   function updateAttribute(attribute) {
     let newState = [
@@ -75,7 +91,8 @@ const NewNode = () => {
 
   return (
     <div className="p-4 flex flex-col gap-3 bg-white rounded-sm border border-black">
-      {!connectAfter && (currentNode?.sysPositive || currentNode?.sysNegative) ? (
+      {!connectAfter &&
+      (currentNode?.sysPositive || currentNode?.sysNegative) ? (
         <div>
           <DropDown
             label={"Connect After -> "}
@@ -95,7 +112,6 @@ const NewNode = () => {
           />
           {type == "core" && (
             <div className="flex flex-col gap-2">
-              <div className="h-[2px] flex w-full bg-black"></div>
               <div className="text-sm">
                 System Provided Infomation
                 <DropDown
@@ -106,11 +122,14 @@ const NewNode = () => {
                 />
               </div>
               {sysProvidedActionType && (
-                <DropDown
-                  label={"Sub Type -> "}
-                  value={subSysProvidedActionType}
-                  setValue={setSubSysProvidedActionType}
-                  values={systemProvidedInfo[sysProvidedActionType]}
+                <Multiselect
+                  options={getObjectList(
+                    systemProvidedInfo[sysProvidedActionType],
+                  )}
+                  selectedValues={subSysProvidedActionType}
+                  onSelect={onSelect}
+                  onRemove={onRemove}
+                  displayValue="name"
                 />
               )}
               <div className="h-[2px] mt-2 flex w-full bg-black"></div>
@@ -153,6 +172,20 @@ const NewNode = () => {
           )}
         </div>
       )}
+      {type == "ancillary" && (
+        <div className="flex flex-col gap-2">
+          <div className="text-sm">
+            Ancillary Node type
+            <DropDown
+              label={"Type -> "}
+              value={ancillaryType}
+              setValue={setAncillaryType}
+              values={ancillaryTypes.types}
+            />
+          </div>
+          {ancillaryType == "Conditional triggers" && <ConditionalTrigger />}
+        </div>
+      )}
       {type && (
         <Button
           title={"Add Node"}
@@ -161,7 +194,7 @@ const NewNode = () => {
             let data = {
               id: selectedNode ? selectedNode["id"] : null,
               type,
-              sysProvidedActionType,
+              sysProvidedActionType: ancillaryType,
               subSysProvidedActionType,
               userAction,
               sysAction,

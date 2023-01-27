@@ -1,6 +1,6 @@
 import React from "react";
 
-const DropDown = ({ label, value = "Select", values, setValue }) => {
+const DropDown = ({ label = "", value, values, setValue }) => {
   return (
     <div className="relative">
       <label className="flex gap-2 justify-between items-center text-sm">

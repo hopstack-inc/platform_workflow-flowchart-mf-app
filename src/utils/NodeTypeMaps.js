@@ -20,7 +20,7 @@ export const attributeTypes = [
 ];
 
 export const nodeType = {
-  types: ["core", "ancillary"],
+  types: [" ", "core", "ancillary"],
 };
 
 export const systemProvidedInfo = {
@@ -35,7 +35,6 @@ export const systemProvidedInfo = {
     "oubound",
   ],
   inbound: [
-    "",
     "tracking-number",
     "consignment-number",
     "order-id",
@@ -44,9 +43,8 @@ export const systemProvidedInfo = {
     "consignment-date",
     "quantity-expected-in-consignment",
   ],
-  client: ["", "client-name"],
+  client: ["client-name"],
   "product-information": [
-    "",
     "sku",
     "seller-sku/msku",
     "asin",
@@ -58,11 +56,10 @@ export const systemProvidedInfo = {
     "supplier-name",
     "lpn",
   ],
-  "bundle-information": ["", "bundle-name", "bundle-asin"],
-  inventory: ["", "unallocated-quantity-for-sku", "damaged-quantity-for-sku"],
-  warehouse: ["", "name", "address", "code"],
+  "bundle-information": ["bundle-name", "bundle-asin"],
+  inventory: ["unallocated-quantity-for-sku", "damaged-quantity-for-sku"],
+  warehouse: ["name", "address", "code"],
   outbound: [
-    "",
     "orderID",
     "carrier",
     "status",
@@ -109,4 +106,26 @@ export const sysActions = {
   ],
   inventory: ["", "add-items", "remove-items"],
   system: ["", "logout-user"],
+};
+
+export const ancillaryTypes = {
+  types: [
+    " ",
+    "Conditional triggers",
+    "Printouts",
+    "Notifications",
+    "Timers",
+    "Approval Loop",
+    "Iteration Counter",
+  ],
+};
+export const conditionTypes = {
+  types: [
+    "Equal to",
+    "Greater than",
+    "Less than",
+    "Greater than equal to",
+    "Less than equal to",
+    "Not equal to",
+  ],
 };

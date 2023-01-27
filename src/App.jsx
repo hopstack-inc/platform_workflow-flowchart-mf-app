@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import {WorkflowProvider} from "./context/WorkflowContext";
 
-import "./index.scss";
+import "./global.css";
 import WorkflowChart from "./WorkflowChart";
 
 const App = () => (

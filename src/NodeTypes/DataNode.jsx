@@ -20,7 +20,18 @@ function DataNode({ data }) {
         {data.sysProvidedActionType && (
           <div>
             <div>System Provided Information: {data.sysProvidedActionType}</div>
-            <div>SubType: {data.subSysProvidedActionType}</div>
+            <div className="w-96">
+              SubType:
+              <div className="gap-1 flex flex-wrap">
+                {data.subSysProvidedActionType.map((action) => (
+                  <div
+                    key={action.id}
+                    className="p-1 text-white text-xs rounded-lg bg-blue-500">
+                    {action.name}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         )}
         {data.userAction && <div>User Action: {data.userAction}</div>}

@@ -8,7 +8,7 @@ function WorkflowProvider(props) {
   const [currentNode, setCurrentNode] = useState();
   const [selectedNode, setSelectedNode] = useState();
   const [lastPos, setLastPos] = useState(0);
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
   const [operation, setOperation] = useState();
 
   useEffect(() => {

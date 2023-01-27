@@ -36,6 +36,7 @@
     "@heroicons/react": "^2.0.13",
     "@tisoap/react-flow-smart-edge": "^3.0.0",
     "axios": "^1.2.2",
+    "multiselect-react-dropdown": "^2.0.25",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "reactflow": "^11.3.2"
