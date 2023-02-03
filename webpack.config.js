@@ -43,8 +43,11 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "platform_workflow_designer",
       filename: "remoteEntry.js",
-      remotes: {},
-      exposes: {},
+      remotes: {
+        platform_workflow_designer: "platform_workflow_designer@http://localhost:8082/remoteEntry.js",
+        trial_mf: "trial_mf@http://localhost:8083/remoteEntry.js"
+      },
+      exposes: { "./WorkflowDesignerWrapper": "./src/WorkflowDesignerWrapper.jsx" },
       shared: {
         ...deps,
         react: {

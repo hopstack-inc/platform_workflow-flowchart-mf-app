@@ -1,15 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {WorkflowProvider} from "./context/WorkflowContext";
 
 import "./global.css";
-import WorkflowChart from "./WorkflowChart";
+import WorkflowDesignerWrapper from "./WorkflowDesignerWrapper";
 
 const App = () => (
   <div className="h-screen w-full">
-    <WorkflowProvider>
-      <WorkflowChart />
-    </WorkflowProvider>
+    <WorkflowDesignerWrapper/>
   </div>
 );
 ReactDOM.render(<App />, document.getElementById("app"));

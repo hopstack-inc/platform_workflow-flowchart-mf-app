@@ -27,43 +27,36 @@ const NewNode = () => {
   const [type, setType] = useState(
     !selectedNode?.type ? nodeType.types[0] : selectedNode.type,
   );
-  const [ancillaryType, setAncillaryType] = useState(
-    !selectedNode?.ancillaryType ? "" : selectedNode.ancillaryType,
-  );
-  const [sysProvidedActionType, setSysProvidedActionType] = useState(
-    !selectedNode?.sysProvidedActionType
-      ? ""
-      : selectedNode.sysProvidedActionType,
-  );
-  const [subSysProvidedActionType, setSubSysProvidedActionType] = useState(
-    !selectedNode?.subSysProvidedActionType
-      ? []
-      : selectedNode.subSysProvidedActionType,
-  );
 
-  const [userAction, setUserAction] = useState(
-    !selectedNode?.userActions ? "" : selectedNode.userActions,
-  );
-
-  const [sysAction, setSysAction] = useState(
-    !selectedNode?.sysAction ? "" : selectedNode.sysAction,
-  );
-  const [sysPositive, setSysPositive] = useState(
-    !selectedNode?.sysPositive ? "" : selectedNode.sysPositive,
-  );
-  const [sysNegative, setSysNegative] = useState(
-    !selectedNode?.sysNegative ? "" : selectedNode.sysNegative,
-  );
   const [attributes, setAttributes] = useState(attributeTypes);
 
-  const [loop, setLoop] = useState();
-  const [connectAfter, setConnectAfter] = useState();
+  const [ancillaryNodeData, setAncillaryNodeData] = useState(
+    selectedNode?.type === "ancillary" ? selectedNode : {},
+  );
+  const [coreNodeData, setCoreNodeData] = useState(
+    selectedNode?.type === "core" ? selectedNode : {},
+  );
 
-  function onSelect(selectedList, selectedItem) {
-    setSubSysProvidedActionType(selectedList);
+  function handleOnChange(key, value) {
+    if (key === "type") {
+      setType(value);
+    }
+    if (type == "core") {
+      let newData = coreNodeData;
+      newData[key] = value;
+      setCoreNodeData({ ...newData });
+    } else {
+      let newData = ancillaryNodeData;
+      newData[key] = value;
+      setAncillaryNodeData({ ...newData });
+    }
+  }
+
+  function onSelect(selectedList) {
+    handleOnChange("subSysProvidedActionType", selectedList);
   }
   function onRemove(selectedList, selectedItem) {
-    setSubSysProvidedActionType([
+    handleOnChange("subSysProvidedActionType", [
       ...selectedList.filter((item) => item !== selectedItem),
     ]);
   }
@@ -87,17 +80,31 @@ const NewNode = () => {
     return att;
   }
 
-  console.log(currentNode, "CurrentNode");
+  function getData() {
+    if (type == "core")
+      return {
+        id: selectedNode ? selectedNode["id"] : null,
+        type,
+        ...coreNodeData,
+      };
+    else
+      return {
+        id: selectedNode ? selectedNode["id"] : null,
+        type,
+        ...ancillaryNodeData,
+      };
+  }
 
   return (
     <div className="p-4 flex flex-col gap-3 bg-white rounded-sm border border-black">
-      {!connectAfter &&
+      {!coreNodeData.connectAfter &&
       (currentNode?.sysPositive || currentNode?.sysNegative) ? (
         <div>
           <DropDown
             label={"Connect After -> "}
-            setValue={setConnectAfter}
-            value={connectAfter}
+            fieldType={"connectAfter"}
+            setValue={handleOnChange}
+            value={coreNodeData.connectAfter}
             values={["", "True", "False"]}
           />
         </div>
@@ -106,8 +113,9 @@ const NewNode = () => {
           {selectedNode ? "Update Node" : "Add New Node"}
           <DropDown
             label={"Node Type -> "}
+            fieldType={"type"}
             value={type}
-            setValue={setType}
+            setValue={handleOnChange}
             values={nodeType.types}
           />
           {type == "core" && (
@@ -116,17 +124,19 @@ const NewNode = () => {
                 System Provided Infomation
                 <DropDown
                   label={"Type -> "}
-                  value={sysProvidedActionType}
-                  setValue={setSysProvidedActionType}
+                  value={coreNodeData.sysProvidedActionType}
+                  fieldType={"sysProvidedActionType"}
+                  setValue={handleOnChange}
                   values={systemProvidedInfo.types}
                 />
               </div>
-              {sysProvidedActionType && (
+              {coreNodeData.sysProvidedActionType && (
                 <Multiselect
                   options={getObjectList(
-                    systemProvidedInfo[sysProvidedActionType],
+                    systemProvidedInfo[coreNodeData.sysProvidedActionType],
                   )}
-                  selectedValues={subSysProvidedActionType}
+                  selectedValues={coreNodeData.subSysProvidedActionType}
+                  fieldType={"subSysProvidedActionType"}
                   onSelect={onSelect}
                   onRemove={onRemove}
                   displayValue="name"
@@ -135,37 +145,42 @@ const NewNode = () => {
               <div className="h-[2px] mt-2 flex w-full bg-black"></div>
               <DropDown
                 label={"User Actions -> "}
-                value={userAction}
-                setValue={setUserAction}
+                value={coreNodeData.userAction}
+                fieldType={"userAction"}
+                setValue={handleOnChange}
                 values={userActionsAndValidations.types}
               />
               <div className="h-[2px] mt-2 flex w-full bg-black"></div>
               <DropDown
                 label={"Output -> "}
-                value={sysAction}
-                setValue={setSysAction}
+                value={coreNodeData.sysAction}
+                fieldType={"sysAction"}
+                setValue={handleOnChange}
                 values={sysActions.types}
               />
-              {sysAction && (
+              {coreNodeData.sysAction && (
                 <div className="flex gap-3">
                   <DropDown
                     label={"True -> "}
-                    value={sysNegative}
-                    setValue={setSysNegative}
-                    values={sysActions[sysAction]}
+                    value={coreNodeData.sysPositive}
+                    fieldType={"sysPositive"}
+                    setValue={handleOnChange}
+                    values={sysActions[coreNodeData.sysAction]}
                   />
                   <DropDown
                     label={"False -> "}
-                    value={sysPositive}
-                    setValue={setSysPositive}
-                    values={sysActions[sysAction]}
+                    value={coreNodeData.sysNegative}
+                    setValue={handleOnChange}
+                    fieldType={"sysNegative"}
+                    values={sysActions[coreNodeData.sysAction]}
                   />
                 </div>
               )}
               <DropDown
                 label={"Loop to -> "}
-                value={loop}
-                setValue={setLoop}
+                value={coreNodeData.loop}
+                fieldType={"loop"}
+                setValue={handleOnChange}
                 values={["", ...nodes.map((node) => node.id)]}
               />
             </div>
@@ -178,31 +193,58 @@ const NewNode = () => {
             Ancillary Node type
             <DropDown
               label={"Type -> "}
-              value={ancillaryType}
-              setValue={setAncillaryType}
+              value={ancillaryNodeData.ancillaryType}
+              fieldType={"ancillaryType"}
+              setValue={handleOnChange}
               values={ancillaryTypes.types}
             />
           </div>
-          {ancillaryType == "Conditional triggers" && <ConditionalTrigger />}
+          {ancillaryNodeData.ancillaryType == "Conditional triggers" && (
+            <ConditionalTrigger />
+          )}
+          {ancillaryNodeData.ancillaryType == "Printouts" && (
+            <DropDown
+              label={"Printouts -> "}
+              value={ancillaryNodeData.printOut}
+              fieldType="printOut"
+              setValue={handleOnChange}
+              values={sysActions.types}
+            />
+          )}
+          {ancillaryNodeData.ancillaryType == "Notifications" && (
+            <input
+              className="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"
+              value={ancillaryNodeData?.notification ?? ""}
+              onChange={(e) => handleOnChange("notification", e.target.value)}
+            />
+          )}
+          {ancillaryNodeData.ancillaryType == "Timers" && (
+            <span>
+              <input
+                className="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"
+                value={ancillaryNodeData.timer ?? ""}
+                onChange={(e) => handleOnChange("timer", e.target.value)}
+              />{" "}
+              Mins
+            </span>
+          )}
+          {ancillaryNodeData.ancillaryType == "Approval Loops" && (
+            <DropDown
+              label={"Printouts -> "}
+              value={ancillaryNodeData.approvalLoop}
+              fieldType="approvalLoop"
+              setValue={handleOnChange}
+              values={sysActions.types}
+            />
+          )}
         </div>
       )}
       {type && (
         <Button
-          title={"Add Node"}
+          title={selectedNode ? "Update Node" : "Add Node"}
           onClick={() => {
             setShowModal(false);
-            let data = {
-              id: selectedNode ? selectedNode["id"] : null,
-              type,
-              sysProvidedActionType: ancillaryType,
-              subSysProvidedActionType,
-              userAction,
-              sysAction,
-              sysPositive,
-              sysNegative,
-              loop,
-              connectAfter,
-            };
+            const data = getData();
             selectedNode ? updateNode(data) : addNode(data);
           }}
         />

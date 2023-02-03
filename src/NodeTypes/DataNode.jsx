@@ -4,6 +4,7 @@ import { WorkflowContext } from "../context/WorkflowContext";
 
 function DataNode({ data }) {
   const { editNode, deleteNode, newNode } = useContext(WorkflowContext);
+  console.log("DataNode", data);
   return (
     <>
       <NodeToolbar
@@ -17,25 +18,37 @@ function DataNode({ data }) {
       <Handle type="target" position={Position.Top} />
       <div className="p-2 m-1 text-xs flex flex-col bg-white rounded-sm border border-black">
         <div>Type: {data.type}</div>
-        {data.sysProvidedActionType && (
+        {data.type == "core" ? (
           <div>
-            <div>System Provided Information: {data.sysProvidedActionType}</div>
-            <div className="w-96">
-              SubType:
-              <div className="gap-1 flex flex-wrap">
-                {data.subSysProvidedActionType.map((action) => (
-                  <div
-                    key={action.id}
-                    className="p-1 text-white text-xs rounded-lg bg-blue-500">
-                    {action.name}
+            {data.sysProvidedActionType && (
+              <div>
+                <div>
+                  System Provided Information: {data.sysProvidedActionType}
+                </div>
+                <div className="w-96">
+                  SubType:
+                  <div className="gap-1 flex flex-wrap">
+                    {data.subSysProvidedActionType.map((action) => (
+                      <div
+                        key={action.id}
+                        className="p-1 text-white text-xs rounded-lg bg-blue-500">
+                        {action.name}
+                      </div>
+                    ))}
                   </div>
-                ))}
+                </div>
               </div>
-            </div>
+            )}
+            {data.userAction && <div>User Action: {data.userAction}</div>}
+            {data.sysAction && <div>Output: {data.sysAction}</div>}
           </div>
+        ) : (
+          Object.keys(data).map((keyName, i) => (
+            <div key={i}>
+              {keyName} : {data[keyName]}
+            </div>
+          ))
         )}
-        {data.userAction && <div>User Action: {data.userAction}</div>}
-        {data.sysAction && <div>Output: {data.sysAction}</div>}
       </div>
       {data.sysNegative && (
         <Handle id="False" type="source" position={Position.Left} />

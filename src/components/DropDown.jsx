@@ -1,6 +1,6 @@
 import React from "react";
 
-const DropDown = ({ label = "", value, values, setValue }) => {
+const DropDown = ({ label = "", fieldType, value, values, setValue }) => {
   return (
     <div className="relative">
       <label className="flex gap-2 justify-between items-center text-sm">
@@ -19,7 +19,7 @@ const DropDown = ({ label = "", value, values, setValue }) => {
           <select
             className="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"
             value={value}
-            onChange={(e) => setValue(e.target.value)}>
+            onChange={(e) => setValue(fieldType, e.target.value)}>
             {values.map((value) => (
               <option key={value} value={value}>
                 {value}
