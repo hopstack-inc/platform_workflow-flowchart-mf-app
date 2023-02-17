@@ -90,7 +90,7 @@ function WorkflowProvider(props) {
     }
     if (nodeList.length > 1) {
       let connectAfterEdge = edges.find(
-        (edge) => edge.source === currentNode.id,
+        (edge) => edge.source === currentNode?.id,
       );
       if (connectAfterEdge && !data?.connectAfter) {
         finalEdges.push(
@@ -111,15 +111,13 @@ function WorkflowProvider(props) {
           ],
         );
       } else {
-        let newEdge = {};
-        newEdge = {
+        console.log(currentNode, "currentNode");
+        let newEdge = {
           id: `${currentNode ? currentNode.id : nodes.at(-1).id}-${node.id}`,
           source: currentNode ? currentNode.id : nodes.at(-1).id.toString(),
-          sourceHandle: data?.connectAfter,
-          label: data?.connectAfter,
           target: node.id.toString(),
         };
-        finalEdges.push(...[...edges, newEdge]);
+        finalEdges.push(...edges, newEdge);
       }
     }
     setEdges(finalEdges);

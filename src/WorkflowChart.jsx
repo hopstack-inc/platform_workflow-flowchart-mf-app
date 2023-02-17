@@ -39,24 +39,23 @@ const WorkflowChart = () => {
     setNodes,
     setEdges,
   } = useContext(WorkflowContext);
-  
+
   function getJson() {
-    let flow = [];
+    let flow = {};
     nodes.forEach((node) => {
-      const nextList = [];
-      edges
-        .filter((edge) => edge.source == node.id)
-        .forEach((edge) => nextList.push(edge.target));
+      const events = {};
+      const id = node.id;
+      events.onConfirm = edges.find((edge) => edge.source == node.id)?.target??null;
+      events.onCancel =
+        edges.find((edge) => edge.target == node.id)?.source ?? null;
       const jsonExtract = {
-        id: node.id,
-        next: nextList,
+        id,
         type: node.data.type,
-        stage: node.data.stage,
-        target: node.data.target,
-        "sub-workflow": node.data["sub-workflow"],
-        attributes: node.data.attributes,
+        layout: { fields: node.data.fields?.map((field) => field.name) },
+        userInputs: node.data.userAction,
+        events,
       };
-      flow.push(jsonExtract);
+      flow[id] = jsonExtract;
     });
 
     if (flow.length > 0)
@@ -104,10 +103,8 @@ const WorkflowChart = () => {
     <div className="h-full w-full relative">
       <div className="absolute flex flex-col px-2 py-10 w-40 h-full shadow-lg bg-white z-10 left-0 top-0">
         <Button onClick={clearWorkflow} title={"New WF"} />
-        <Modal
-          showModal={showModal}
-          setShowModal={setShowModal}>
-          <NewNode/>
+        <Modal showModal={showModal} setShowModal={setShowModal}>
+          <NewNode />
         </Modal>
         <Button onClick={getJson} title={"JSON"} />
       </div>

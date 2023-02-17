@@ -53,10 +53,10 @@ const NewNode = () => {
   }
 
   function onSelect(selectedList) {
-    handleOnChange("subSysProvidedActionType", selectedList);
+    handleOnChange("fields", selectedList);
   }
   function onRemove(selectedList, selectedItem) {
-    handleOnChange("subSysProvidedActionType", [
+    handleOnChange("fields", [
       ...selectedList.filter((item) => item !== selectedItem),
     ]);
   }
@@ -135,8 +135,8 @@ const NewNode = () => {
                   options={getObjectList(
                     systemProvidedInfo[coreNodeData.sysProvidedActionType],
                   )}
-                  selectedValues={coreNodeData.subSysProvidedActionType}
-                  fieldType={"subSysProvidedActionType"}
+                  selectedValues={coreNodeData.fields}
+                  fieldType={"fields"}
                   onSelect={onSelect}
                   onRemove={onRemove}
                   displayValue="name"

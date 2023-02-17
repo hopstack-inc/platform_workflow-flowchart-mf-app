@@ -28,7 +28,7 @@ function DataNode({ data }) {
                 <div className="w-96">
                   SubType:
                   <div className="gap-1 flex flex-wrap">
-                    {data.subSysProvidedActionType.map((action) => (
+                    {data.fields.map((action) => (
                       <div
                         key={action.id}
                         className="p-1 text-white text-xs rounded-lg bg-blue-500">
