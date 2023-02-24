@@ -14,8 +14,8 @@ import { SmartBezierEdge } from "@tisoap/react-flow-smart-edge";
 import Modal from "./utils/Modal";
 import NewNode from "./NodeTypes/NewNode";
 import { Button } from "./utils/Button";
-import axios from "axios";
 import { WorkflowContext } from "./context/WorkflowContext";
+import axios from "axios";
 
 const rfStyle = {
   backgroundColor: "#B8CEFF",
@@ -38,6 +38,9 @@ const WorkflowChart = () => {
     setShowModal,
     setNodes,
     setEdges,
+    selectedWorkflow,
+    newWorkflow,
+    rootNode,
   } = useContext(WorkflowContext);
 
   function getJson() {
@@ -45,29 +48,70 @@ const WorkflowChart = () => {
     nodes.forEach((node) => {
       const events = {};
       const id = node.id;
-      events.onConfirm = edges.find((edge) => edge.source == node.id)?.target??null;
-      events.onCancel =
-        edges.find((edge) => edge.target == node.id)?.source ?? null;
+      events.onConfirm = {
+        next: edges.find((edge) => edge.source == node.id)?.target ?? null,
+      };
+      events.onCancel = {
+        next: edges.find((edge) => edge.target == node.id)?.source ?? null,
+      };
       const jsonExtract = {
         id,
         type: node.data.type,
         layout: { fields: node.data.fields?.map((field) => field.name) },
-        userInputs: node.data.userAction,
+        userInputs: node.data.userInputs,
+        systemInfo: node.data.systemInfo,
         events,
       };
       flow[id] = jsonExtract;
     });
+    var data = selectedWorkflow;
+    data["nodes"] = flow;
+    if (newWorkflow)
+      data["trigger"] = {
+        start: [
+          {
+            conditionType: "all",
+            conditions: {
+              warehouse: "warehouse-1",
+              client: "client-1",
+              location: "ABCD",
+            },
+            next: rootNode,
+          },
+        ],
+        end: null,
+      };
 
-    if (flow.length > 0)
-      // axios
-      //   .post("http://localhost:5045/api/workflows", {
-      //     workflow: flow,
-      //     activity: "Receiving",
-      //   })
-      //   .then((e) => alert("Added new workflow"));
-      alert("Added new workflow");
-    else alert("Add at least one node");
-    console.log(JSON.stringify(flow), "JSON");
+    console.log("NewWF", newWorkflow);
+
+    if (!newWorkflow) delete data["tenant"];
+
+    let stringData = JSON.stringify(data);
+    var config = {
+      method: newWorkflow ? "post" : "put",
+      maxBodyLength: Infinity,
+      url:
+        "http://localhost:5048/api/flowModels" +
+        `${newWorkflow ? "" : `/${data.id}`}`,
+      headers: {
+        tenant:
+          '{"id":"62cdb0ac6227b7ed224d79aa","name":"Hopstack Inc","subdomain":"hst","apiGateway":"https://api.uat.ap-southeast-1.hopstack.io","socketService":"https://api.uat.ap-southeast-1.hopstack.io","enabledSimulations":false,"active":true,"cubeService":"https://apse1-uat-analytics.hopstack.io","typeOfCustomer":"3PL","active":true}',
+        "Content-Type": "application/json",
+      },
+      data: stringData,
+    };
+
+    console.log(stringData, "stringData");
+    console.log(config, "config");
+    console.log(data, "data");
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   const onEdgeUpdate = useCallback(

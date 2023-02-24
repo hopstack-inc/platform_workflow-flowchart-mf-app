@@ -1,12 +1,18 @@
-import React from "react";
-import { WorkflowProvider } from "./context/WorkflowContext";
+import React, { useContext } from "react";
+import { WorkflowContext } from "./context/WorkflowContext";
+import WorkflowSelection from "./pages/workflowSelection";
 import WorkflowChart from "./WorkflowChart";
 
 const WorkflowDesignerWrapper = () => {
+  const { newWorkflow, selectedWorkflow } = useContext(WorkflowContext);
   return (
-    <WorkflowProvider>
-      <WorkflowChart />
-    </WorkflowProvider>
+    <>
+      {!(newWorkflow || selectedWorkflow) ? (
+        <WorkflowSelection />
+      ) : (
+        <WorkflowChart />
+      )}
+    </>
   );
 };
 

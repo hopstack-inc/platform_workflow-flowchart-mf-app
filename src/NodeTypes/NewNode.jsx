@@ -12,6 +12,7 @@ import {
   sysActions,
   systemProvidedInfo,
   userActionsAndValidations,
+  userActionTypes,
 } from "../utils/NodeTypeMaps";
 
 const NewNode = () => {
@@ -25,7 +26,8 @@ const NewNode = () => {
   } = useContext(WorkflowContext);
 
   const [type, setType] = useState(
-    !selectedNode?.type ? nodeType.types[0] : selectedNode.type,
+    "core",
+    // !selectedNode?.type ? nodeType.types[0] : selectedNode.type,
   );
 
   const [attributes, setAttributes] = useState(attributeTypes);
@@ -111,80 +113,90 @@ const NewNode = () => {
       ) : (
         <div>
           {selectedNode ? "Update Node" : "Add New Node"}
-          <DropDown
+          {/* <DropDown
             label={"Node Type -> "}
             fieldType={"type"}
             value={type}
             setValue={handleOnChange}
             values={nodeType.types}
-          />
-          {type == "core" && (
-            <div className="flex flex-col gap-2">
-              <div className="text-sm">
-                System Provided Infomation
-                <DropDown
-                  label={"Type -> "}
-                  value={coreNodeData.sysProvidedActionType}
-                  fieldType={"sysProvidedActionType"}
-                  setValue={handleOnChange}
-                  values={systemProvidedInfo.types}
-                />
-              </div>
-              {coreNodeData.sysProvidedActionType && (
-                <Multiselect
-                  options={getObjectList(
-                    systemProvidedInfo[coreNodeData.sysProvidedActionType],
-                  )}
-                  selectedValues={coreNodeData.fields}
-                  fieldType={"fields"}
-                  onSelect={onSelect}
-                  onRemove={onRemove}
-                  displayValue="name"
-                />
-              )}
-              <div className="h-[2px] mt-2 flex w-full bg-black"></div>
+          /> */}
+          {/* {type == "core" && ( */}
+          <div className="flex flex-col gap-2">
+            <div className="text-sm">
+              System Provided Infomation
               <DropDown
-                label={"User Actions -> "}
-                value={coreNodeData.userAction}
-                fieldType={"userAction"}
+                label={"Type -> "}
+                value={coreNodeData.systemInfo}
+                fieldType={"systemInfo"}
                 setValue={handleOnChange}
-                values={userActionsAndValidations.types}
-              />
-              <div className="h-[2px] mt-2 flex w-full bg-black"></div>
-              <DropDown
-                label={"Output -> "}
-                value={coreNodeData.sysAction}
-                fieldType={"sysAction"}
-                setValue={handleOnChange}
-                values={sysActions.types}
-              />
-              {coreNodeData.sysAction && (
-                <div className="flex gap-3">
-                  <DropDown
-                    label={"True -> "}
-                    value={coreNodeData.sysPositive}
-                    fieldType={"sysPositive"}
-                    setValue={handleOnChange}
-                    values={sysActions[coreNodeData.sysAction]}
-                  />
-                  <DropDown
-                    label={"False -> "}
-                    value={coreNodeData.sysNegative}
-                    setValue={handleOnChange}
-                    fieldType={"sysNegative"}
-                    values={sysActions[coreNodeData.sysAction]}
-                  />
-                </div>
-              )}
-              <DropDown
-                label={"Loop to -> "}
-                value={coreNodeData.loop}
-                fieldType={"loop"}
-                setValue={handleOnChange}
-                values={["", ...nodes.map((node) => node.id)]}
+                values={systemProvidedInfo.types}
               />
             </div>
-          )}
+            {coreNodeData.systemInfo && (
+              <Multiselect
+                options={getObjectList(
+                  systemProvidedInfo[coreNodeData.systemInfo],
+                )}
+                selectedValues={coreNodeData.fields}
+                fieldType={"fields"}
+                onSelect={onSelect}
+                onRemove={onRemove}
+                displayValue="name"
+              />
+            )}
+            <div className="h-[2px] mt-2 flex w-full bg-black"></div>
+            <DropDown
+              label={"User Action Type -> "}
+              value={coreNodeData.inputType}
+              fieldType={"inputType"}
+              setValue={handleOnChange}
+              values={userActionTypes.types}
+            />
+            <div className="h-[2px] mt-2 flex w-full bg-black"></div>
+            {coreNodeData.inputType && (
+              <DropDown
+                label={"User Actions -> "}
+                value={coreNodeData.userInputs}
+                fieldType={"userInputs"}
+                setValue={handleOnChange}
+                values={userActionsAndValidations[coreNodeData.inputType]}
+              />
+            )}
+            <div className="h-[2px] mt-2 flex w-full bg-black"></div>
+            <DropDown
+              label={"Output -> "}
+              value={coreNodeData.sysAction}
+              fieldType={"sysAction"}
+              setValue={handleOnChange}
+              values={sysActions.types}
+            />
+            {coreNodeData.sysAction && (
+              <div className="flex gap-3">
+                <DropDown
+                  label={"True -> "}
+                  value={coreNodeData.sysPositive}
+                  fieldType={"sysPositive"}
+                  setValue={handleOnChange}
+                  values={sysActions[coreNodeData.sysAction]}
+                />
+                <DropDown
+                  label={"False -> "}
+                  value={coreNodeData.sysNegative}
+                  setValue={handleOnChange}
+                  fieldType={"sysNegative"}
+                  values={sysActions[coreNodeData.sysAction]}
+                />
+              </div>
+            )}
+            <DropDown
+              label={"Loop to -> "}
+              value={coreNodeData.loop}
+              fieldType={"loop"}
+              setValue={handleOnChange}
+              values={["", ...nodes.map((node) => node.id)]}
+            />
+          </div>
+          {/* )} */}
         </div>
       )}
       {type == "ancillary" && (

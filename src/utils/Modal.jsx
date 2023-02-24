@@ -3,11 +3,13 @@ import React from "react";
 const Modal = (props) => {
   return (
     <>
-      <button
-        className="rounded-md shadow-md border text-medium my-2 text-base text-black border-blue-600 px-4 py-2 flex items-start justify-center"
-        onClick={() => props.setShowModal(true)}>
-        Add Node
-      </button>
+      {props.setShowModal && (
+        <button
+          className="rounded-md shadow-md border text-medium my-2 text-base text-black border-blue-600 px-4 py-2 flex items-start justify-center"
+          onClick={() => props.setShowModal(true)}>
+          Add Node
+        </button>
+      )}
       {props.showModal ? (
         <>
           <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">

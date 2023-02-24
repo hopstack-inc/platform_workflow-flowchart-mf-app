@@ -1,4 +1,6 @@
+import axios from "axios";
 import React, { createContext, useState, useEffect } from "react";
+import { getObjectList } from "../utils/function";
 
 const WorkflowContext = createContext({});
 
@@ -8,60 +10,84 @@ function WorkflowProvider(props) {
   const [currentNode, setCurrentNode] = useState();
   const [selectedNode, setSelectedNode] = useState();
   const [lastPos, setLastPos] = useState(0);
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const [operation, setOperation] = useState();
+  const [workFlows, setWorkFlows] = useState([]);
+  const [selectedWorkflow, setSelectedWorkflow] = useState(null);
+  const [newWorkflow, setNewWorkflow] = useState(false);
+  const [rootNode, setRootNode] = useState();
 
   useEffect(() => {
-    let workflows;
+    var config = {
+      method: "post",
+      maxBodyLength: Infinity,
+      url: "http://localhost:5048/api/getFlowModels",
+      headers: {
+        tenant:
+          '{"id":"62cdb0ac6227b7ed224d79aa","name":"Hopstack Inc","subdomain":"hst","apiGateway":"https://api.uat.ap-southeast-1.hopstack.io","socketService":"https://api.uat.ap-southeast-1.hopstack.io","enabledSimulations":false,"active":true,"cubeService":"https://apse1-uat-analytics.hopstack.io","typeOfCustomer":"3PL","active":true}',
+        "Content-Type": "application/json",
+      },
+    };
     try {
-      axios.get("http://localhost:5045/api/workflows").then((res) => {
-        workflows = res.data.at(-1).workflow;
-        const convertedNodes = [];
-        const convertedEdges = [];
-        workflows?.forEach((node, index) => {
-          convertedNodes.push(...getNodeFrom(node, index));
-        });
-        convertedNodes.forEach((node) =>
-          convertedEdges.push(...getEdgeFrom(node)),
-        );
-        setLastPos(convertedNodes.length * 100 + 200);
-        setNodes([...convertedNodes]);
-        setEdges([...convertedEdges]);
+      axios(config).then((res) => {
+        setWorkFlows(res.data.entities);
       });
     } catch (error) {
       console.log(error);
     }
   }, []);
 
-  function getNodeFrom(node, index, isSub = false) {
-    const nodeList = [];
-    if (node["sub-workflow"] != null) {
-      node["sub-workflow"].forEach((element) =>
-        nodeList.push(...getNodeFrom(element, index + 1, true)),
+  useEffect(() => {
+    if (selectedWorkflow) {
+      const convertedNodes = [];
+      const convertedEdges = [];
+      Object.keys(selectedWorkflow.nodes).forEach((key, index) => {
+        convertedNodes.push(
+          ...getNodeFrom(key, selectedWorkflow.nodes[key], index),
+        );
+      });
+      console.log("convertedNodes", convertedNodes);
+      convertedNodes.forEach((node) =>
+        convertedEdges.push(...getEdgeFrom(node)),
       );
+      setLastPos(convertedNodes.length * 100 + 200);
+      setNodes([...convertedNodes]);
+      setEdges([...convertedEdges]);
     }
+  }, [selectedWorkflow]);
+
+  function getNodeFrom(id, node, index) {
+    const nodeList = [];
+
+    let transformedData = {
+      fields: node.layout?.fields ? getObjectList(node.layout.fields) : null,
+      type: node.type,
+      systemInfo: node.systemInfo,
+      userInputs: node.userInputs,
+      next: node.events.onConfirm.next,
+      id: id,
+    };
+
     nodeList.push({
-      id: `${node.id}`,
-      position: { x: isSub ? 250 : 100, y: index * 150 + 300 },
-      data: node,
+      id: `${id}`,
+      position: { x: 100, y: index * 150 + 300 },
+      data: transformedData,
       type: "data",
     });
     return nodeList;
   }
 
   function getEdgeFrom(node) {
+    const list = [];
     if (node.data.next) {
-      const list = [];
-      for (const id of node.data.next) {
-        list.push({
-          id: `${node.id}-${id}`,
-          source: node.id,
-          target: id,
-          type: "smartEdge",
-        });
-      }
-      return list;
+      list.push({
+        id: `${node.id}-${node.data.next}`,
+        source: node.id,
+        target: node.data.next,
+        type: "smartEdge",
+      });
     }
+    return list;
   }
 
   function getLastPos() {
@@ -71,6 +97,7 @@ function WorkflowProvider(props) {
 
   function addNode(data) {
     data["id"] = `${nodes.length + (Math.random() * 100).toFixed(0)}`;
+    if (nodes.length == 0) setRootNode(data.id);
     let node = {
       id: data.id,
       position: { x: 100, y: getLastPos() },
@@ -172,6 +199,13 @@ function WorkflowProvider(props) {
         deleteNode,
         getLastPos,
         lastPos,
+        newWorkflow,
+        setNewWorkflow,
+        selectedWorkflow,
+        setSelectedWorkflow,
+        workFlows,
+        rootNode,
+        setRootNode,
       }}
       {...props}
     />

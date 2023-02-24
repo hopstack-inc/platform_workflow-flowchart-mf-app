@@ -20,10 +20,10 @@ function DataNode({ data }) {
         <div>Type: {data.type}</div>
         {data.type == "core" ? (
           <div>
-            {data.sysProvidedActionType && (
+            {data.systemInfo && (
               <div>
                 <div>
-                  System Provided Information: {data.sysProvidedActionType}
+                  System Provided Information: {data.systemInfo}
                 </div>
                 <div className="w-96">
                   SubType:
@@ -39,7 +39,7 @@ function DataNode({ data }) {
                 </div>
               </div>
             )}
-            {data.userAction && <div>User Action: {data.userAction}</div>}
+            {data.userInputs && <div>User Action: {data.userInputs}</div>}
             {data.sysAction && <div>Output: {data.sysAction}</div>}
           </div>
         ) : (

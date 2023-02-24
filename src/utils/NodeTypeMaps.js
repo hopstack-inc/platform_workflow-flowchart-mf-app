@@ -71,8 +71,11 @@ export const systemProvidedInfo = {
   ],
 };
 
+export const userActionTypes = { types: ["", "scan", "type", "dropDown"] };
+
 export const userActionsAndValidations = {
-  types: [
+  scan: ["", "consignment-number", "trackingNumber", "sku", "tote", "bin"],
+  type: [
     "",
     "consignment-number",
     "trackingNumber",
@@ -80,9 +83,9 @@ export const userActionsAndValidations = {
     "tote",
     "bin",
     "quantity-of-goods",
-    "form-factors",
     "notes",
   ],
+  dropDown: ["", "form-factors"],
 };
 
 export const sysActions = {
