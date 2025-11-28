@@ -32,7 +32,7 @@
     "webpack-dev-server": "^4.3.1"
   },
   "dependencies": {
-    "@babel/runtime": "^7.13.10",
+    "@babel/runtime": "^7.28.4",
     "@headlessui/react": "^1.7.7",
     "@heroicons/react": "^2.0.13",
     "@tisoap/react-flow-smart-edge": "^3.0.0",
