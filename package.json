@@ -29,7 +29,7 @@
     "tailwindcss": "^2.0.2",
     "webpack": "^5.57.1",
     "webpack-cli": "^4.9.0",
-    "webpack-dev-server": "^4.3.1"
+    "webpack-dev-server": "^5.2.1"
   },
   "dependencies": {
     "@babel/runtime": "^7.13.10",
